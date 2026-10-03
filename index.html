@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XGrass</title>
+<meta name="description" content="XGrass provides professional turfing, lawn care and garden maintenance services across the UK. Premium turf installation, garden levelling and ongoing care.">
+<meta property="og:title" content="XGrass — Professional Turfing & Lawn Care">
+<meta property="og:description" content="Premium turf installation, garden levelling and lawn maintenance across the UK.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xgrassuk.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap">
+<style>
+:root {
+  --ink: #101211;
+  --ink-light: #1A1C1B;
+  --ink-mid: #2A2B29;
+  --stone: #F3F1EB;
+  --stone-mid: #E5E2DA;
+  --accent: #8FAF45;
+  --accent-hover: #A0C050;
+  --concrete: #B8B5AC;
+  --concrete-light: #D4D1CA;
+  --font-d: 'Syne', 'Arial Black', sans-serif;
+  --font-b: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --max-w: 1360px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--concrete);
+  font-family: var(--font-b);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-d);
+  font-weight: 800;
+  color: var(--stone);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; }
+
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+}
+
+.overline {
+  font-family: var(--font-b);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-b);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-out);
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--ink);
+}
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent;
+  color: var(--stone);
+  border: 1px solid var(--concrete);
+}
+.btn-secondary:hover { border-color: var(--stone); color: var(--stone); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem 0;
+  transition: background 0.4s var(--ease-smooth), padding 0.4s var(--ease-smooth);
+}
+.nav.scrolled {
+  background: rgba(16,18,17,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.8rem 0;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+.nav-logo img {
+  height: 36px;
+  width: auto;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--concrete);
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s var(--ease-out);
+}
+.nav-links a:hover { color: var(--stone); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  font-size: 0.75rem;
+  padding: 0.7rem 1.5rem;
+  color: #fff !important;
+  box-shadow: 0 0 20px rgba(143,175,69,0.25);
+}
+.nav-mobile { display: none; background: none; border: none; color: var(--stone); padding: 0.5rem; }
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-left: 0.5rem;
+}
+.nav-social a {
+  color: var(--concrete);
+  transition: color 0.3s var(--ease-smooth);
+  display: flex;
+  align-items: center;
+}
+.nav-social a:hover { color: var(--accent); }
+.nav-social svg { width: 20px; height: 20px; }
+.footer-social {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--ink-mid);
+  color: var(--concrete);
+  transition: all 0.3s var(--ease-smooth);
+}
+.footer-social a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.footer-social svg { width: 19px; height: 19px; }
+.overlay-social {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.overlay-social a {
+  color: var(--concrete);
+  transition: color 0.3s;
+  display: flex;
+}
+.overlay-social a:hover { color: var(--accent); }
+.overlay-social svg { width: 26px; height: 26px; }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  padding: clamp(9rem, 16vh, 15rem) 0 clamp(5rem, 10vh, 9rem);
+  overflow: hidden;
+  background: url('img/hero.jpg') 65% 35% / 130% no-repeat;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 60% 80%, rgba(143,175,69,0.04) 0%, transparent 50%),
+    linear-gradient(175deg, rgba(16,18,17,0.88) 0%, rgba(16,18,17,0.6) 35%, rgba(16,18,17,0.5) 50%, rgba(16,18,17,0.6) 70%, rgba(16,18,17,0.88) 100%);
+  z-index: 0;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+.hero-accent-line {
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(3.2rem, 8vw, 7.5rem);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.hero h1 .line {
+  display: block;
+  overflow: hidden;
+}
+.hero-sub {
+  margin-top: 2rem;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 300;
+  color: var(--concrete);
+  max-width: 560px;
+  line-height: 1.7;
+}
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+/* Hero load animation */
+.hero-accent-line { animation: fadeSlideRight 0.8s var(--ease-out) 0.2s both; }
+.hero h1 .line:nth-child(1) { animation: revealUp 0.7s var(--ease-out) 0.4s both; }
+.hero h1 .line:nth-child(2) { animation: revealUp 0.7s var(--ease-out) 0.6s both; }
+.hero-sub { animation: fadeUp 0.7s var(--ease-out) 0.9s both; }
+.hero-buttons { animation: fadeUp 0.7s var(--ease-out) 1.1s both; }
+
+@keyframes revealUp {
+  from { clip-path: inset(100% 0 0 0); transform: translateY(15px); }
+  to { clip-path: inset(0 0 0 0); transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSlideRight {
+  from { opacity: 0; transform: scaleX(0); transform-origin: left; }
+  to { opacity: 1; transform: scaleX(1); transform-origin: left; }
+}
+
+/* ── STATS ── */
+.stats {
+  background: var(--ink);
+  padding: clamp(1.5rem, 2.5vw, 2.2rem) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.stats-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.stat {
+  text-align: center;
+  flex: 1;
+  min-width: 140px;
+  position: relative;
+}
+.stat:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.stat-number {
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+  color: var(--stone);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--concrete);
+  margin-top: 0.5rem;
+}
+
+/* ── INTRO ── */
+.intro {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  position: relative;
+  overflow: hidden;
+}
+.intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('img/care.jpg') center / cover no-repeat;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(16,18,17,0.75) 0%, rgba(16,18,17,0.40) 40%, rgba(16,18,17,0.45) 70%, rgba(16,18,17,0.75) 100%),
+    radial-gradient(ellipse at 20% 50%, rgba(143,175,69,0.10) 0%, transparent 60%);
+  pointer-events: none;
+}
+.intro > .container {
+  position: relative;
+  z-index: 1;
+}
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(3rem, 5vw, 6rem);
+  align-items: start;
+}
+.intro h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.intro-text p {
+  margin: 0 0 1.2rem;
+  max-width: 55ch;
+}
+.intro-text p:first-child { margin-top: 0.5rem; }
+
+/* ── SERVICES ── */
+.service-section {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  position: relative;
+  overflow: hidden;
+}
+.service-section--dark {
+  background: var(--ink-light);
+  position: relative;
+}
+.service-section--dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('img/after.jpg') center / cover no-repeat;
+  opacity: 0.20;
+  pointer-events: none;
+}
+.service-section--dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, var(--ink-light) 0%, rgba(26,28,27,0.65) 20%, rgba(26,28,27,0.65) 80%, var(--ink-light) 100%);
+  pointer-events: none;
+}
+.service-section--dark > .container {
+  position: relative;
+  z-index: 1;
+}
+.service-section--light { background: var(--stone); }
+.service-section--light h2,
+.service-section--light h3 { color: var(--ink); }
+.service-section--light p { color: var(--ink-mid); }
+.service-section--light .overline { color: var(--accent); }
+.service-section--light .service-list li { color: var(--ink-mid); }
+.service-section--light .service-list li::before { background: var(--accent); }
+
+.service-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(3rem, 5vw, 5rem);
+  align-items: center;
+}
+.service-grid.reversed {
+  grid-template-columns: 1fr 1.15fr;
+}
+
+.service-visual {
+  aspect-ratio: 4 / 3;
+  position: relative;
+  overflow: hidden;
+}
+.service-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  pointer-events: none;
+}
+.service-visual--turf { background: var(--ink-light); }
+.service-visual--care { background: var(--stone-mid); }
+.service-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.service-visual-label {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-size: clamp(4rem, 8vw, 6rem);
+  color: rgba(243,241,235,0.06);
+  line-height: 1;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.service-section--light .service-visual-label { color: rgba(16,18,17,0.05); }
+
+.service-content h2,
+.service-section h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.service-content p,
+.service-section > .container > div > p {
+  max-width: 55ch;
+  margin-bottom: 2rem;
+}
+.service-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  columns: 2;
+  column-gap: 2rem;
+}
+.service-list li {
+  padding: 0.55rem 0;
+  padding-left: 1.2rem;
+  position: relative;
+  font-size: 0.95rem;
+  break-inside: avoid;
+}
+.service-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ── PROCESS ── */
+.process {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  border-top: 1px solid var(--ink-mid);
+  position: relative;
+  overflow: hidden;
+}
+.process::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('img/process.jpg') center / cover no-repeat;
+  opacity: 0.25;
+  pointer-events: none;
+}
+.process::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, var(--ink) 0%, rgba(16,18,17,0.55) 25%, rgba(16,18,17,0.55) 75%, var(--ink) 100%);
+  pointer-events: none;
+}
+.process > .container {
+  position: relative;
+  z-index: 1;
+}
+.process-header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 5vw, 5rem);
+}
+.process-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-transform: uppercase;
+}
+.process-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(42,43,41,0.5);
+  position: relative;
+  z-index: 1;
+}
+.process-step {
+  background: rgba(16,18,17,0.88);
+  backdrop-filter: blur(2px);
+  padding: clamp(2rem, 3vw, 3rem);
+  position: relative;
+}
+.process-step-num {
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  color: var(--accent);
+  line-height: 1;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+.process-step h3 {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 1rem;
+}
+.process-step p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--concrete);
+}
+
+/* ── WORK GALLERY ── */
+.work-section {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.work-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('img/cta.jpg') center / cover no-repeat;
+  opacity: 0.20;
+  pointer-events: none;
+}
+.work-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, var(--ink) 0%, rgba(16,18,17,0.65) 15%, rgba(16,18,17,0.65) 85%, var(--ink) 100%);
+  pointer-events: none;
+}
+.work-section > .container {
+  position: relative;
+  z-index: 1;
+}
+.work-header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+.work-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-transform: uppercase;
+}
+.work-header p {
+  max-width: 50ch;
+  margin: 1.2rem auto 0;
+  color: var(--concrete);
+  font-weight: 300;
+}
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.work-card {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+.work-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+.work-card:hover img {
+  transform: scale(1.04);
+}
+.work-card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(0deg, rgba(16,18,17,0.8) 0%, rgba(16,18,17,0.3) 60%, transparent 100%);
+  font-family: var(--font-b);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.85);
+}
+.work-hidden {
+  display: none;
+}
+.work-grid.expanded .work-hidden {
+  display: block;
+  animation: workRevealIn 0.5s var(--ease-out) both;
+}
+.work-grid.expanded .work-hidden:nth-child(7) { animation-delay: 0s; }
+.work-grid.expanded .work-hidden:nth-child(8) { animation-delay: 0.05s; }
+.work-grid.expanded .work-hidden:nth-child(9) { animation-delay: 0.1s; }
+.work-grid.expanded .work-hidden:nth-child(10) { animation-delay: 0.15s; }
+.work-grid.expanded .work-hidden:nth-child(11) { animation-delay: 0.2s; }
+.work-grid.expanded .work-hidden:nth-child(12) { animation-delay: 0.25s; }
+.work-grid.expanded .work-hidden:nth-child(13) { animation-delay: 0.3s; }
+.work-grid.expanded .work-hidden:nth-child(14) { animation-delay: 0.35s; }
+.work-grid.expanded .work-hidden:nth-child(15) { animation-delay: 0.4s; }
+.work-grid.expanded .work-hidden:nth-child(16) { animation-delay: 0.45s; }
+.work-grid.expanded .work-hidden:nth-child(17) { animation-delay: 0.5s; }
+@keyframes workRevealIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+.work-reveal {
+  text-align: center;
+  margin-top: clamp(2rem, 3vw, 3rem);
+  position: relative;
+  z-index: 1;
+}
+.work-reveal-btn {
+  border-color: var(--concrete);
+  color: var(--stone);
+  padding: 0.9rem 2.5rem;
+}
+.work-reveal-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.work-reveal-arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--ease-out);
+  margin-left: 0.3rem;
+}
+.work-reveal.collapsed .work-reveal-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  background: var(--stone);
+}
+.testimonials .overline { color: var(--accent); }
+.testimonials-header {
+  margin-bottom: clamp(3rem, 4vw, 4rem);
+}
+.testimonials-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--stone-mid);
+}
+.testimonial {
+  background: var(--stone);
+  padding: clamp(2rem, 3vw, 3rem);
+}
+.testimonial-mark {
+  font-family: var(--font-d);
+  font-size: 3.5rem;
+  color: var(--accent);
+  line-height: 1;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+.testimonial blockquote {
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.02rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  max-width: 45ch;
+}
+.testimonial-attr {
+  margin-top: 1.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.testimonial-loc {
+  font-weight: 400;
+  color: var(--concrete);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ── FINAL CTA ── */
+.final-cta {
+  padding: clamp(6rem, 11vw, 10rem) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: url('img/cta.jpg') center / cover no-repeat;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16,18,17,0.85) 0%, rgba(16,18,17,0.7) 50%, rgba(16,18,17,0.85) 100%);
+  pointer-events: none;
+}
+.final-cta-inner { position: relative; z-index: 1; }
+.final-cta h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+}
+.final-cta p {
+  max-width: 50ch;
+  margin: 0 auto 2.5rem;
+  font-weight: 300;
+  font-size: 1.08rem;
+}
+.final-cta .btn-primary { padding: 1.1rem 2.5rem; font-size: 0.9rem; }
+
+/* ── FOOTER ── */
+.footer {
+  background: #0a0b0a;
+  padding: clamp(3rem, 5vw, 4.5rem) 0;
+  border-top: 1px solid var(--ink-mid);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: clamp(2rem, 3vw, 4rem);
+}
+.footer-logo {
+  margin-bottom: 1rem;
+}
+.footer-logo img {
+  height: 32px;
+  width: auto;
+}
+.footer-desc {
+  font-size: 0.9rem;
+  color: var(--concrete);
+  max-width: 38ch;
+  line-height: 1.6;
+}
+.footer h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--stone);
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--concrete);
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--accent); }
+.footer-bottom {
+  margin-top: clamp(2rem, 3vw, 3rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ink-mid);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--concrete);
+}
+
+/* ── FLOATING CTA ── */
+.floating-cta {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 90;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+.floating-cta.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.floating-cta a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: rgba(143,175,69,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font-family: var(--font-b);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 100px;
+  transition: all 0.35s var(--ease-out);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(143,175,69,0.2);
+}
+.floating-cta a:hover {
+  background: rgba(160,192,80,0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(143,175,69,0.3);
+}
+.floating-cta .f-arrow {
+  transition: transform 0.3s var(--ease-out);
+  display: inline-block;
+  font-size: 0.9em;
+}
+.floating-cta a:hover .f-arrow { transform: translateX(3px); }
+
+/* ── MOBILE NAV OVERLAY ── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-smooth);
+}
+.nav-overlay.open { opacity: 1; pointer-events: auto; }
+.nav-overlay a {
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--stone);
+  transition: color 0.3s;
+}
+.nav-overlay a:hover { color: var(--accent); }
+.nav-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--stone);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* ── QUOTE FORM MODAL ── */
+.quote-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,11,10,0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-smooth);
+  padding: 1.5rem;
+}
+.quote-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.quote-modal {
+  background: var(--ink-light);
+  border: 1px solid var(--ink-mid);
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: clamp(2rem, 4vw, 3rem);
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.4s var(--ease-out);
+}
+.quote-overlay.open .quote-modal {
+  transform: translateY(0);
+}
+.quote-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  color: var(--concrete);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.3rem;
+  line-height: 1;
+  transition: color 0.3s;
+}
+.quote-close:hover { color: var(--stone); }
+.quote-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.quote-logo {
+  margin-bottom: 1.5rem;
+  opacity: 0.6;
+}
+.quote-logo img {
+  height: 28px;
+  width: auto;
+}
+.quote-modal .overline { margin-bottom: 0.8rem; }
+.quote-modal h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.quote-modal > p {
+  color: var(--concrete);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  max-width: 45ch;
+}
+.form-group {
+  margin-bottom: 1.25rem;
+}
+.form-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--concrete-light);
+  margin-bottom: 0.45rem;
+}
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: var(--ink);
+  border: 1px solid var(--ink-mid);
+  color: var(--stone);
+  font-family: var(--font-b);
+  font-size: 0.95rem;
+  transition: border-color 0.3s;
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--concrete);
+  opacity: 0.5;
+}
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23B8B5AC' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+.form-select option { background: var(--ink); color: var(--stone); }
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.form-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.form-note {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--concrete);
+  margin-top: 1rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 500px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ── SCROLL REVEAL ── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal="left"] {
+  transform: translateX(-40px) translateY(0);
+}
+[data-reveal="left"].revealed {
+  transform: translateX(0) translateY(0);
+}
+[data-reveal="right"] {
+  transform: translateX(40px) translateY(0);
+}
+[data-reveal="right"].revealed {
+  transform: translateX(0) translateY(0);
+}
+[data-reveal="scale"] {
+  transform: scale(0.92);
+}
+[data-reveal="scale"].revealed {
+  transform: scale(1);
+}
+[data-delay="1"] { transition-delay: 0.1s; }
+[data-delay="2"] { transition-delay: 0.2s; }
+[data-delay="3"] { transition-delay: 0.3s; }
+[data-delay="4"] { transition-delay: 0.4s; }
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .service-grid,
+  .service-grid.reversed { grid-template-columns: 1fr; }
+  .service-grid.reversed .service-visual { order: -1; }
+  .service-visual { aspect-ratio: 16 / 9; }
+  .process-track { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-social { display: none; }
+  .nav-mobile { display: block; }
+  .hero { background-position: center 30%; background-size: cover; }
+  .hero h1 { font-size: clamp(2.4rem, 9.5vw, 3.2rem); letter-spacing: -0.03em; }
+  .hero h1 .line { overflow: visible; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stat { min-width: unset; }
+  .stat:not(:last-child)::after { display: none; }
+  .service-content h2 { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .final-cta h2 { font-size: clamp(2rem, 8vw, 3rem); }
+  .service-list { columns: 1; }
+  .process-track { grid-template-columns: 1fr; }
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .floating-cta {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    transform: translateY(calc(100% + 2rem));
+  }
+  .floating-cta.visible { transform: translateY(0); }
+  .floating-cta a {
+    justify-content: center;
+    padding: 0.9rem 1.2rem;
+    width: 100%;
+    border-radius: 100px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo"><img src="img/logo-white.png" alt="XGrass"></a>
+    <ul class="nav-links">
+      <li><a href="#turfing">Turfing</a></li>
+      <li><a href="#lawn-care">Lawn Care</a></li>
+      <li><a href="#process">Our Process</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact" class="btn btn-primary nav-cta" data-quote>Get a Quote</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://instagram.com/xgrassuk" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://facebook.com/xgrassuk" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://wa.me/441234567890" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+    </div>
+    <button class="nav-mobile" id="navToggle" aria-label="Open menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="nav-overlay" id="navOverlay">
+  <button class="nav-close" id="navClose" aria-label="Close menu">&times;</button>
+  <a href="#turfing" class="nav-overlay-link">Turfing</a>
+  <a href="#lawn-care" class="nav-overlay-link">Lawn Care</a>
+  <a href="#process" class="nav-overlay-link">Our Process</a>
+  <a href="#testimonials" class="nav-overlay-link">Reviews</a>
+  <a href="#contact" class="nav-overlay-link" data-quote>Get a Quote</a>
+  <div class="overlay-social">
+    <a href="https://instagram.com/xgrassuk" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a href="https://facebook.com/xgrassuk" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://wa.me/441234567890" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-accent-line"></div>
+    <h1>
+      <span class="line">Real Grass.</span>
+      <span class="line">Properly Done.</span>
+    </h1>
+    <p class="hero-sub">From residential gardens to large-scale estates, we deliver expert turf installation and ongoing lawn care. Every project is built on proper ground preparation, premium materials, and over a decade of specialist knowledge.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary" data-quote>Get a Quote</a>
+      <a href="#before-after" class="btn btn-secondary">View Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat" data-reveal data-delay="1">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="stat" data-reveal data-delay="2">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat" data-reveal data-delay="3">
+        <div class="stat-number">24hr</div>
+        <div class="stat-label">Quote Response</div>
+      </div>
+      <div class="stat" data-reveal data-delay="4">
+        <div class="stat-number">5 &#9733;</div>
+        <div class="stat-label">Customer Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <div data-reveal="left">
+        <span class="overline">The XGrass Difference</span>
+        <h2>One Trade.<br>Mastered.</h2>
+      </div>
+      <div class="intro-text" data-reveal="right">
+        <p>Most companies do a bit of everything. We chose grass &mdash; and we've spent over a decade getting obsessively good at it. While others treat turfing as one item on a long list of services, it's the only thing we do.</p>
+        <p>Every project gets the same treatment: stripped back to bare soil, levelled to precision, and finished with premium turf that roots deep and lasts. We don't subcontract, we don't cut corners, and we don't leave until the finish is right.</p>
+        <p>That single-minded focus is why our lawns still look immaculate months and years after installation &mdash; and why the majority of our work comes from referrals. When your neighbour's lawn looks like a bowling green, people ask questions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TURFING SERVICE -->
+<section class="service-section service-section--dark" id="turfing">
+  <div class="container">
+    <div class="service-grid">
+      <div class="service-visual service-visual--turf" data-reveal="left">
+        <img src="img/turf.jpg" alt="Freshly laid striped lawn with landscaped garden" class="service-img">
+        <div class="service-visual-label">Turf</div>
+      </div>
+      <div class="service-content" data-reveal="right">
+        <span class="overline">What We Do Best</span>
+        <h2>Built From<br>The Ground Up</h2>
+        <p>A lawn is only as good as what's underneath it. We strip back, level, cultivate, and lay premium turf with precision &mdash; so your garden looks finished from the moment we leave.</p>
+        <ul class="service-list">
+          <li>Old lawn removal &amp; clearance</li>
+          <li>Full ground preparation</li>
+          <li>Soil cultivation &amp; improvement</li>
+          <li>Precision levelling</li>
+          <li>Premium turf supply</li>
+          <li>Professional turf laying</li>
+          <li>Edge finishing</li>
+          <li>Aftercare guidance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAWN CARE SERVICE -->
+<section class="service-section service-section--light" id="lawn-care">
+  <div class="container">
+    <div class="service-grid reversed">
+      <div class="service-content" data-reveal="left">
+        <span class="overline">Ongoing Care</span>
+        <h2>Lawn Care &amp;<br>Maintenance</h2>
+        <p>A great lawn needs ongoing care. Our maintenance programmes keep your grass healthy, thick, and looking its best through every season. Whether your lawn needs regular cutting, seasonal treatment, or a full recovery programme, we have the expertise.</p>
+        <ul class="service-list">
+          <li>Regular lawn mowing</li>
+          <li>Lawn feeding programmes</li>
+          <li>Weed management</li>
+          <li>Seasonal treatments</li>
+          <li>Lawn renovation</li>
+          <li>Grass recovery</li>
+          <li>Ongoing maintenance plans</li>
+          <li>Lawn health assessments</li>
+        </ul>
+      </div>
+      <div class="service-visual service-visual--care" data-reveal="right">
+        <img src="img/care.jpg" alt="Professionally maintained striped lawn" class="service-img">
+        <div class="service-visual-label">Care</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="process-header" data-reveal>
+      <span class="overline">How It Works</span>
+      <h2>From Bare Ground<br>to Brilliant Lawn</h2>
+    </div>
+    <div class="process-track">
+      <div class="process-step" data-reveal data-delay="1">
+        <div class="process-step-num">01</div>
+        <h3>Site Assessment</h3>
+        <p>We visit your property, assess the existing ground conditions, measure the area, and discuss exactly what you want from your new lawn.</p>
+      </div>
+      <div class="process-step" data-reveal data-delay="2">
+        <div class="process-step-num">02</div>
+        <h3>Ground Preparation</h3>
+        <p>Old turf removed, soil cultivated, levels corrected, drainage addressed. This is the work that separates a good lawn from a great one.</p>
+      </div>
+      <div class="process-step" data-reveal data-delay="3">
+        <div class="process-step-num">03</div>
+        <h3>Turf Installation</h3>
+        <p>Premium grade natural turf, precision-laid with tight seams and clean edges. Rolled, watered, and finished to a professional standard.</p>
+      </div>
+      <div class="process-step" data-reveal data-delay="4">
+        <div class="process-step-num">04</div>
+        <h3>Aftercare</h3>
+        <p>Detailed watering schedule, mowing guidance, and seasonal care advice. We make sure your new lawn establishes properly and stays healthy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR WORK -->
+<section class="work-section" id="before-after">
+  <div class="container">
+    <div class="work-header" data-reveal>
+      <span class="overline">Recent Projects</span>
+      <h2>Our Work</h2>
+      <p>A selection of recently completed turf installations and lawn transformations.</p>
+    </div>
+    <div class="work-grid" id="workGrid">
+      <div class="work-card" data-reveal="scale" data-delay="1">
+        <img src="img/work15.jpg" alt="Estate lawn with pool and countryside views">
+      </div>
+      <div class="work-card" data-reveal="scale" data-delay="2">
+        <img src="img/work17.jpg" alt="Large striped lawn with detached house">
+      </div>
+      <div class="work-card" data-reveal="scale" data-delay="3">
+        <img src="img/work5.jpg" alt="Striped lawn with stone wall and summer house">
+      </div>
+      <div class="work-card" data-reveal="scale" data-delay="1">
+        <img src="img/work13.jpg" alt="Striped lawn with flower borders and summer house">
+      </div>
+      <div class="work-card" data-reveal="scale" data-delay="2">
+        <img src="img/work14.jpg" alt="Close-up striped lawn with Tudor property">
+      </div>
+      <div class="work-card" data-reveal="scale" data-delay="3">
+        <img src="img/work12.jpg" alt="Garden lawn with Japanese maple and landscaping">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/after.jpg" alt="Finished striped lawn with new turf">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work1.jpg" alt="Estate lawn with landscaped garden and countryside views">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work2.jpg" alt="Close-up striped lawn with period property">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work3.jpg" alt="Back garden lawn with conservatory">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work11.jpg" alt="Striped lawn with patio and conservatory at dusk">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work7.jpg" alt="Autumn striped lawn with work van">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work10.jpg" alt="Freshly laid turf being watered">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work6.jpg" alt="Striped lawn with hedges">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work9.jpg" alt="Ground preparation with measuring">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work16.jpg" alt="Small garden lawn installation in progress">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work8.jpg" alt="Wide striped estate lawn with countryside">
+      </div>
+      <div class="work-card work-hidden">
+        <img src="img/work18.jpg" alt="Striped lawn with gazebo and garden sculptures">
+      </div>
+    </div>
+    <div class="work-reveal" id="workReveal">
+      <button class="btn btn-secondary work-reveal-btn" id="workRevealBtn">View All Projects <span class="work-reveal-arrow">&darr;</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header" data-reveal>
+      <span class="overline">Client Reviews</span>
+      <h2>What Our Clients Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial" data-reveal data-delay="1">
+        <div class="testimonial-mark">&ldquo;</div>
+        <blockquote>Excellent service, the XGrass team were very professional to deal with, punctual and polite, works carried out completed to a high standard. We had our garden altered from a wonky slope into two stepped flat levels which me and the wife can now enjoy even more. We will continue to use this team for our garden maintenance. Highly recommend.</blockquote>
+        <div class="testimonial-attr">Sam R.</div>
+      </div>
+      <div class="testimonial" data-reveal data-delay="2">
+        <div class="testimonial-mark">&ldquo;</div>
+        <blockquote>XGrass were the perfect find. The team arrived early and worked non-stop to get the work done. The completed work was done to a very high standard throughout and we were more than pleased with the finished results. We will definitely be getting the team back for our future needs and I cannot recommend them enough!</blockquote>
+        <div class="testimonial-attr">Kaye W.</div>
+      </div>
+      <div class="testimonial" data-reveal data-delay="3">
+        <div class="testimonial-mark">&ldquo;</div>
+        <blockquote>Great team providing a great service. I have been using these guys for over 7 years. They are very experienced, always turn up on time and leave my garden looking amazing. I would highly recommend them.</blockquote>
+        <div class="testimonial-attr">Numaan K.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <div class="container final-cta-inner" data-reveal>
+    <span class="overline">Get Started</span>
+    <h2>Your Lawn.<br>Done Properly.</h2>
+    <p>Get in touch for a free, no-obligation quote. We'll visit your property, assess what's needed, and give you a clear price &mdash; no surprises.</p>
+    <a href="#contact" class="btn btn-primary" data-quote>Get Your Free Quote</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="img/logo-white.png" alt="XGrass"></div>
+        <p class="footer-desc">Specialist turfing and lawn care with over a decade of experience. From ground preparation to premium turf installation and ongoing maintenance &mdash; we deliver lawns built to last.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="#turfing">Turf Installation</a></li>
+          <li><a href="#turfing">Lawn Renovation</a></li>
+          <li><a href="#lawn-care">Lawn Maintenance</a></li>
+          <li><a href="#lawn-care">Lawn Treatment</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#before-after">Our Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:info@xgrass.co.uk">info@xgrass.co.uk</a></li>
+          <li><a href="tel:01234567890">01234 567 890</a></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://instagram.com/xgrassuk" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://facebook.com/xgrassuk" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://wa.me/441234567890" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2024 XGrass. All rights reserved.</span>
+      <span>Professional Turfing &amp; Lawn Care</span>
+    </div>
+  </div>
+</footer>
+
+<!-- QUOTE FORM MODAL -->
+<div class="quote-overlay" id="quoteOverlay">
+  <div class="quote-modal">
+    <button class="quote-close" id="quoteClose" aria-label="Close form">&times;</button>
+    <div class="quote-logo"><img src="img/logo-white.png" alt="XGrass"></div>
+    <span class="overline">Free Quote</span>
+    <h2>Get Your Quote</h2>
+    <p>Fill in your details and we'll get back to you within 24 hours with a clear, no-obligation quote.</p>
+    <form id="quoteForm" onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="qName">Full Name</label>
+          <input class="form-input" type="text" id="qName" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="qPhone">Phone Number</label>
+          <input class="form-input" type="tel" id="qPhone" placeholder="07xxx xxx xxx" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="qEmail">Email Address</label>
+        <input class="form-input" type="email" id="qEmail" placeholder="you@email.com" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="qPostcode">Postcode</label>
+          <input class="form-input" type="text" id="qPostcode" placeholder="e.g. SL4 1AA">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="qService">Service Required</label>
+          <select class="form-select" id="qService">
+            <option value="" disabled selected>Select a service</option>
+            <option>New Turf Installation</option>
+            <option>Lawn Renovation</option>
+            <option>Lawn Maintenance</option>
+            <option>Lawn Treatment</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="qMessage">Tell Us About Your Lawn</label>
+        <textarea class="form-textarea" id="qMessage" placeholder="Approximate lawn size, current condition, what you're looking for..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary form-submit">Send My Quote Request</button>
+    </form>
+    <p class="form-note">We'll never share your details. Response within 24 hours.</p>
+  </div>
+</div>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floatingCta">
+  <a href="#contact" data-quote>Get a Free Quote <span class="f-arrow">&rarr;</span></a>
+</div>
+
+<script>
+(function() {
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+
+  var nav = document.getElementById('nav');
+  var floatingCta = document.getElementById('floatingCta');
+  var heroHeight = document.querySelector('.hero').offsetHeight;
+  var lastScrollY = 0;
+  var scrollTicking = false;
+
+  window.addEventListener('scroll', function() {
+    if (!scrollTicking) {
+      requestAnimationFrame(function() {
+        var currentY = window.scrollY;
+        nav.classList.toggle('scrolled', currentY > 80);
+        var pastHero = currentY > heroHeight;
+        var scrollingDown = currentY > lastScrollY + 5;
+        var scrollingUp = currentY < lastScrollY - 5;
+        if (pastHero && scrollingDown) {
+          floatingCta.classList.add('visible');
+        } else if (scrollingUp || !pastHero) {
+          floatingCta.classList.remove('visible');
+        }
+        lastScrollY = currentY;
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  });
+
+  var navToggle = document.getElementById('navToggle');
+  var navOverlay = document.getElementById('navOverlay');
+  var navClose = document.getElementById('navClose');
+  navToggle.addEventListener('click', function() { navOverlay.classList.toggle('open'); });
+  navClose.addEventListener('click', function() { navOverlay.classList.remove('open'); });
+  document.querySelectorAll('.nav-overlay-link').forEach(function(link) {
+    link.addEventListener('click', function() { navOverlay.classList.remove('open'); });
+  });
+
+  var quoteOverlay = document.getElementById('quoteOverlay');
+  var quoteClose = document.getElementById('quoteClose');
+  function openQuote() { quoteOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeQuote() { quoteOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+  quoteClose.addEventListener('click', closeQuote);
+  quoteOverlay.addEventListener('click', function(e) { if (e.target === quoteOverlay) closeQuote(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeQuote(); });
+
+  document.querySelectorAll('[data-quote]').forEach(function(btn) {
+    btn.addEventListener('click', function(e) { e.preventDefault(); openQuote(); });
+  });
+
+  document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = this.querySelector('.form-submit');
+    btn.textContent = 'Request Sent!';
+    btn.style.background = '#6a8a35';
+    btn.disabled = true;
+    setTimeout(function() { closeQuote(); btn.textContent = 'Send My Quote Request'; btn.style.background = ''; btn.disabled = false; }, 2500);
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      if (this.hasAttribute('data-quote')) return;
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  var workGrid = document.getElementById('workGrid');
+  var workRevealBtn = document.getElementById('workRevealBtn');
+  var workReveal = document.getElementById('workReveal');
+  var workExpanded = false;
+  workRevealBtn.addEventListener('click', function() {
+    workExpanded = !workExpanded;
+    workGrid.classList.toggle('expanded', workExpanded);
+    workReveal.classList.toggle('collapsed', workExpanded);
+    workRevealBtn.innerHTML = workExpanded
+      ? 'Show Less <span class="work-reveal-arrow" style="transform:rotate(180deg)">&darr;</span>'
+      : 'View All Projects <span class="work-reveal-arrow">&darr;</span>';
+  });
+
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach(function(el) {
+    revealObserver.observe(el);
+  });
+
+})();
+</script>
+</body>
+</html>
